@@ -1,0 +1,747 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Feliz cumpleaños, Adelaida ❤️</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --rosa: #ff477e;
+      --rosa-claro: #ff9dbb;
+      --vino: #a52250;
+      --blanco: #fffafc;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: white;
+      background: linear-gradient(
+        135deg,
+        #ff477e,
+        #ff85a6,
+        #ffc2d1
+      );
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* Corazones flotantes */
+
+    #corazones {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .corazon {
+      position: absolute;
+      bottom: -50px;
+      animation: flotar linear forwards;
+      opacity: 0.8;
+    }
+
+    @keyframes flotar {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: translateY(-115vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Contenido */
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .portada {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 45px 22px;
+    }
+
+    .rosa {
+      font-size: 65px;
+      animation: latido 2s infinite;
+      filter: drop-shadow(0 8px 12px #9b174c40);
+    }
+
+    @keyframes latido {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.12);
+      }
+    }
+
+    .portada h1 {
+      font-size: clamp(32px, 7vw, 58px);
+      line-height: 1.2;
+      margin: 18px 0;
+      text-shadow: 0 4px 15px #a5225040;
+    }
+
+    .portada p {
+      max-width: 620px;
+      font-size: clamp(17px, 3vw, 21px);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .boton {
+      display: inline-block;
+      border: none;
+      padding: 15px 28px;
+      border-radius: 50px;
+      background: white;
+      color: var(--rosa);
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 8px 25px #92244b30;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .boton:hover {
+      transform: translateY(-3px) scale(1.03);
+      background: #fff0f5;
+    }
+
+    .boton-secundario {
+      background: #ffedf3;
+      color: var(--vino);
+    }
+
+    /* Secciones */
+
+    .seccion {
+      width: min(900px, 92%);
+      margin: 0 auto 45px;
+      padding: 30px;
+      border: 1px solid #ffffff75;
+      border-radius: 28px;
+      background: #ffffff24;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 12px 35px #92244b1b;
+    }
+
+    .seccion h2 {
+      text-align: center;
+      font-size: clamp(25px, 5vw, 35px);
+      margin-bottom: 20px;
+    }
+
+    .introduccion {
+      text-align: center;
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    /* Carta */
+
+    .carta {
+      display: none;
+      padding: 27px;
+      border-radius: 22px;
+      background: var(--blanco);
+      color: var(--vino);
+      line-height: 1.9;
+      animation: aparecer 0.8s ease;
+    }
+
+    .carta h3 {
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 18px;
+    }
+
+    .carta p {
+      margin-bottom: 14px;
+    }
+
+    .firma {
+      text-align: right;
+      font-weight: bold;
+      margin-top: 25px;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Galería de fotos */
+
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .foto {
+      overflow: hidden;
+      border-radius: 18px;
+      background: #ffffff30;
+      border: 2px solid #ffffff70;
+      box-shadow: 0 7px 20px #92244b20;
+    }
+
+    .foto img {
+      display: block;
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      transition: transform 0.4s;
+      cursor:zoom-in;
+    }
+
+    .foto:hover img {
+      transform: scale(1.06);
+    }
+
+    .foto p {
+      padding: 13px 8px;
+      text-align: center;
+      font-size: 14px;
+      background: #ffffff25;
+    }
+
+    .nota-fotos {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* Música */
+
+    .musica {
+      text-align: center;
+    }
+
+    .disco {
+      width: 130px;
+      height: 130px;
+      border: 7px solid #ffffffaa;
+      border-radius: 50%;
+      margin: 15px auto 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 55px;
+      background: linear-gradient(135deg, #ff4f81, #ffb3c8);
+      box-shadow: 0 10px 25px #92244b30;
+    }
+
+    .disco.sonando {
+      animation: girar 5s linear infinite;
+    }
+
+    @keyframes girar {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .musica p {
+      margin: 12px 0 22px;
+      line-height: 1.7;
+    }
+
+    /* Cierre */
+
+    .final {
+      text-align: center;
+      padding: 45px 20px 65px;
+      line-height: 1.9;
+    }
+
+    .final h2 {
+      font-size: clamp(27px, 6vw, 42px);
+      margin-bottom: 15px;
+    }
+
+    .final .gran-corazon {
+      font-size: 55px;
+      margin-top: 12px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      background: #a5225015;
+    }
+
+    @media (max-width: 520px) {
+      .seccion {
+        padding: 20px 15px;
+      }
+
+      .galeria {
+        grid-template-columns: 1fr;
+      }
+
+      .foto img {
+        height: 260px;
+      }
+
+      .carta {
+        padding: 20px;
+      }
+
+      .portada {
+        min-height: 90vh;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    /* Visor de fotografías a pantalla completa */
+.visor-fotos {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(0, 0, 0, 0.95);
+    align-items: center;
+    justify-content: center;
+    padding: 55px 15px 20px;
+}
+
+.visor-fotos.abierto {
+    display: flex;
+}
+
+.visor-fotos img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.cerrar-visor {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 45px;
+    cursor: pointer;
+}
+
+body.visor-abierto {
+    overflow: hidden;
+}
+  </style>
+</head>
+
+<body>
+
+  <div id="corazones" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- PORTADA -->
+    <section class="portada" id="inicio">
+
+      <div class="rosa">🌹</div>
+
+      <h1>
+        ¡Feliz cumpleaños,<br>
+         Adelaida! ❤️
+      </h1>
+
+      <p>
+        Hoy es un día tan hermoso como tú.
+        Celebro tu vida, tu sonrisa y la alegría
+        que traes a mi corazón. Que la vida te
+        regale tantos motivos para sonreír como
+        los que tú me regalas a mí. 💕
+      </p>
+
+      <button class="boton" onclick="mostrarCarta()">
+        Abrir mi carta de amor 💌
+      </button>
+
+      <p style="font-size:14px; margin-top:22px;">
+        Una pequeña sorpresa hecha especialmente para ti ✨
+      </p>
+
+    </section>
+
+    <!-- CARTA ROMÁNTICA -->
+    <section class="seccion" id="seccionCarta">
+
+      <!-- <h2>💌 Una carta para ti Amor</h2>
+
+      <p class="introduccion">
+        Hay palabras que merecen decirse desde fonde de mi corazón...
+      </p> -->
+
+      <div class="carta" id="carta">
+
+        <h3>Para mi querida Noble hermosa Dama Adelaida 🌹</h3>
+
+        <p>
+          Mi amor, hoy es un día muy especial porque
+          celebramos el regalo más bonito que la vida
+          nos puede dar: tu existencia.
+        </p>
+
+        <p>
+          Quiero desearte un cumpleaños lleno de
+          felicidad, abrazos sinceros, sonrisas
+          inolvidables y sueños que poco a poco
+          se conviertan en realidad. !Te AMO!
+        </p>
+
+        <p>
+          Gracias por ser esa persona que hace que
+          los pequeños momentos tengan un significado
+          especial. Tu sonrisa tiene una forma única
+          de iluminar los días y hacer que todo
+          parezca más bonito.
+        </p>
+
+        <p>
+          Deseo que nunca te falten motivos para
+          sonreír, fuerzas para luchar por tus sueños
+          y personas que te recuerden lo maravillosa
+          que eres.
+        </p>
+
+        <p>
+          Si pudiera regalarte algo más que palabras,
+          te regalaría la oportunidad de verte con
+          mis ojos, para que descubras lo especial,
+          hermosa y valiosa que eres.
+        </p>
+
+        <p>
+          Hoy quiero que te sientas querida,
+          celebrada y muy especial, porque mereces
+          cosas bonitas no solamente en tu cumpleaños,
+          sino todos los días de tu vida.
+        </p>
+
+        <p>
+          Que esta nueva vuelta al sol venga cargada
+          de bendiciones, aventuras, amor y momentos
+          que algún día recordemos con una sonrisa.
+        </p>
+
+        <p>
+          ¡Feliz cumpleaños, mi querida mujer Hermosa Adelaida!
+          Que la vida siempre te sonría. 😘❤️
+        </p>
+
+        <div class="firma">
+          Con mucho cariño,<br>
+          Siempre desea verte feliz. 😘🫂
+        </div>
+
+      </div>
+
+    </section>
+    <!-- MÚSICA ROMÁNTICA -->
+    <section class="seccion musica">
+
+      <h2>🎶 Una canción para ti</h2>
+
+      <div class="disco" id="disco">🎵</div>
+
+      <p>
+        Porque hay canciones que expresan lo que
+        a veces las palabras no pueden decir. ❤️
+      </p>
+
+      <audio id="audio" loop preload="metadata">
+        <source src="musica/musica.mp3" type="audio/mpeg">
+        Tu navegador no admite audio HTML5.
+      </audio>
+
+      <button class="boton" id="botonMusica"
+              onclick="alternarMusica()">
+        ▶ Reproducir nuestra canción
+      </button>
+
+      <p id="estadoMusica" aria-live="polite">
+        Pulsa el botón para escuchar la música 💗
+      </p>
+
+    </section>
+
+    <!-- GALERÍA DE FOTOS -->
+    <section class="seccion" id="nuestrosMomentos">
+
+      <h2>📸 Nuestros momentos bonitos</h2>
+
+      <p class="introduccion">
+        Cada fotografía guarda una historia.
+        Aquí podemos reunir esos recuerdos que
+        hacen que el corazón sonría. 💗
+      </p>
+
+      <div class="galeria">
+
+        <div class="foto">
+          <img src="fotos/foto1.jpeg"
+               alt="Nuestro recuerdo especial número uno"
+               loading="lazy">
+          <p>Feliz cumpleaños, mi amor. Hoy celebro tu vida y el regalo más hermoso que me dio el destino: conocer a la mujer más bella del universo❤️</p>
+        </div>
+
+        <div class="foto">
+          <img src="fotos/fotos1.gif"
+               alt="Nuestro recuerdo especial número dos"
+               loading="lazy">
+          <p>Gracias por existir y por hacer cada día más feliz. Que disfrutes al máximo tu día. ¡Te amo muchísimo!"🌹</p>
+        </div>
+
+        <!-- <div class="foto">
+          <img src="foto4.jpeg"
+               alt="Nuestro recuerdo especial número tres"
+               loading="lazy">
+          <p>Sonrisas que alegran el alma 💕</p>
+        </div>
+
+        <div class="foto">
+          <img src="foto5.jpeg"
+               alt="Nuestro recuerdo especial número cuatro"
+               loading="lazy">
+          <p>Que vengan muchos recuerdos más ✨</p>
+        </div> -->
+
+      </div>
+
+      <!-- <p class="nota-fotos">
+        Sustituye las fotos de ejemplo por tus fotografías
+        favoritas con Noble para hacer esta página más personal.
+      </p> -->
+
+    </section>
+
+    
+    <!-- DESPEDIDA -->
+    <section class="final">
+
+      <h2>Un cumpleaños lleno de amor y compromiso ❤️🌷</h2>
+
+      <p>
+        Que tus sueños florezcan, que tu sonrisa
+        nunca desaparezca y que la felicidad
+        te acompañe hoy y siempre.
+      </p>
+
+      <p>
+        <br>
+        ¡Que este sea el comienzo de un año maravilloso!
+      </p>
+
+      <div class="gran-corazon">❤️</div>
+
+      <button class="boton"
+              onclick="sorpresaFinal()"><a href="indexx.html"></>
+        Una última sorpresa 🎁
+      </button>
+
+      <p id="mensajeFinal"
+         style="margin-top:20px; font-weight:bold;"
+         aria-live="polite">
+      </p>
+
+    </section>
+
+  </main>
+  <div class="visor-fotos" id="visorFotos">
+    <button
+        class="cerrar-visor"
+        id="cerrarVisor"
+        aria-label="Cerrar fotografía">
+        &times;
+    </button>
+
+    <img id="imagenAmpliada" src="" alt="Fotografía ampliada">
+</div>
+
+  <footer>
+    Hecho con cariño para celebrar a Adelaida 🌹
+  </footer>
+
+  <script>
+    // ABRIR LAS FOTOS EN PANTALLA COMPLETA
+const visorFotos = document.getElementById("visorFotos");
+const imagenAmpliada = document.getElementById("imagenAmpliada");
+const cerrarVisor = document.getElementById("cerrarVisor");
+
+document.querySelectorAll(".galeria .foto img").forEach((foto) => {
+    foto.addEventListener("click", () => {
+        imagenAmpliada.src = foto.currentSrc || foto.src;
+        imagenAmpliada.alt = foto.alt;
+
+        visorFotos.classList.add("abierto");
+        document.body.classList.add("visor-abierto");
+    });
+});
+
+// Cerrar con el botón X
+cerrarVisor.addEventListener("click", cerrarFoto);
+
+function cerrarFoto() {
+    visorFotos.classList.remove("abierto");
+    document.body.classList.remove("visor-abierto");
+    imagenAmpliada.src = "";
+}
+
+// Cerrar al pulsar el fondo oscuro
+visorFotos.addEventListener("click", (evento) => {
+    if (evento.target === visorFotos) {
+        cerrarFoto();
+    }
+});
+
+// Cerrar con la tecla Escape
+document.addEventListener("keydown", (evento) => {
+    if (evento.key === "Escape") {
+        cerrarFoto();
+    }
+});
+    // MOSTRAR Y OCULTAR LA CARTA
+    function mostrarCarta() {
+      const carta = document.getElementById("carta");
+      const abierta = carta.style.display === "block";
+
+      carta.style.display = abierta ? "none" : "block";
+
+      if (!abierta) {
+        carta.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }
+    }
+
+    // MÚSICA
+    const audio = document.getElementById("audio");
+    const botonMusica = document.getElementById("botonMusica");
+    const disco = document.getElementById("disco");
+    const estadoMusica = document.getElementById("estadoMusica");
+
+    async function alternarMusica() {
+      if (audio.paused) {
+        try {
+          await audio.play();
+          botonMusica.textContent = "❚❚ Pausar nuestra canción";
+          disco.classList.add("sonando");
+          estadoMusica.textContent =
+            "Reproduciendo música para ti... 🎶❤️";
+        } catch (error) {
+          estadoMusica.textContent =
+            "No se pudo reproducir. Comprueba que musica.mp3 esté en la carpeta.";
+        }
+      } else {
+        audio.pause();
+        botonMusica.textContent = "▶ Continuar nuestra canción";
+        disco.classList.remove("sonando");
+        estadoMusica.textContent = "Música pausada 💗";
+      }
+    }
+
+    audio.addEventListener("ended", () => {
+      botonMusica.textContent = "▶ Reproducir nuestra canción";
+      disco.classList.remove("sonando");
+    });
+
+    // SORPRESA FINAL
+    function sorpresaFinal() {
+      const mensaje = document.getElementById("mensajeFinal");
+
+      mensaje.textContent =
+        "🌹 Noble, que nunca te falten amor, alegría y motivos para brillar. ¡Feliz cumpleaños! ❤️💖";
+
+      for (let i = 0; i < 24; i++) {
+        setTimeout(crearCorazon, i * 100);
+      }
+    }
+
+    // CORAZONES FLOTANTES
+    function crearCorazon() {
+      const contenedor = document.getElementById("corazones");
+      const corazon = document.createElement("span");
+
+      corazon.className = "corazon";
+
+      const simbolos = ["❤️", "💕", "💗", "🌹", "💖", "✨"];
+
+      corazon.textContent =
+        simbolos[Math.floor(Math.random() * simbolos.length)];
+
+      corazon.style.left = Math.random() * 100 + "vw";
+      corazon.style.fontSize =
+        (16 + Math.random() * 20) + "px";
+
+      const duracion = 5 + Math.random() * 5;
+
+      corazon.style.animationDuration = duracion + "s";
+
+      contenedor.appendChild(corazon);
+
+      setTimeout(() => {
+        corazon.remove();
+      }, duracion * 1000);
+    }
+
+    // Generar corazones periódicamente
+    setInterval(crearCorazon, 500);
+  </script>
+
+</body>
+</html>
